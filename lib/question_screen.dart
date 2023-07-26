@@ -10,9 +10,17 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentQuestionIndex = 0;
+
+  answerQuestions() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentquestion = questions[0];
+    final currentquestion = questions[currentQuestionIndex];
     return Center(
         child: Container(
       margin: const EdgeInsets.all(40),
@@ -50,9 +58,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             height: 30,
           ),
           //map is just creationg a new object in this case list with new item based on old ones
-          ...currentquestion.answers.map(
+          ...currentquestion.getshuffledAnswers().map(
             (item) {
-              return AnswerButton(answerText: item, onTap: () {});
+              return AnswerButton(answerText: item, onTap: answerQuestions);
             },
           ),
 
