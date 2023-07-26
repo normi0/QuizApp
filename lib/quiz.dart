@@ -11,6 +11,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   /* Widget? activeScreen; */ //init state method
+  final List<String> selectedAnswers = [];
   var activeScreen = 'start-screen'; //id method
 
   /*  void initState() {
@@ -24,11 +25,17 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void chooseanswers(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(switchScreen);
     if (activeScreen == 'questions-screen') {
-      screenWidget = const QuestionsScreen();
+      screenWidget = QuestionsScreen(
+        onSelectAnswer: chooseanswers,
+      );
     } /* else if (activeScreen == 'Home-screnn')
     {
       screenWidget = '';
@@ -51,6 +58,7 @@ class _QuizState extends State<Quiz> {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
