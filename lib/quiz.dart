@@ -13,7 +13,8 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   /* Widget? activeScreen; */ //init state method
-  List<String> selectedAnswers = [];
+  List<String> _selectedAnswers =
+      []; //make it private means it is used just in this file
   var activeScreen = 'start-screen'; //id method
 
   /*  void initState() {
@@ -28,10 +29,10 @@ class _QuizState extends State<Quiz> {
   }
 
   void chooseanswers(String answer) {
-    selectedAnswers.add(answer);
-    if (questions.length == selectedAnswers.length) {
+    _selectedAnswers.add(answer);
+    if (questions.length == _selectedAnswers.length) {
       setState(() {
-        /* selectedAnswers = []; */
+        _selectedAnswers = [];
         activeScreen = 'results-screen';
       });
     }
@@ -46,7 +47,7 @@ class _QuizState extends State<Quiz> {
       );
     } else if (activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
-        choosenAnswers: selectedAnswers,
+        choosenAnswers: _selectedAnswers,
       );
     }
     /* else if (activeScreen == 'Home-screnn')
