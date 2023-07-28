@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/data/questions.dart';
+import 'package:quizz_app/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen(
@@ -42,13 +43,7 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(
-              'list of answers and questions',
-              style: GoogleFonts.lato(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
+            QuestionsSummary(getSummaryData()),
             const SizedBox(
               height: 30,
             ),
