@@ -27,6 +27,11 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numOfTotalQuestions = questions.length;
+    final numCorrectQuestions = summaryData.where((data) {
+      return data['User_Answer'] == data['Correct_Answer'];
+    }).length;
     return Center(
       child: Container(
         margin: const EdgeInsets.all(40),
@@ -34,7 +39,7 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'U answers x out of y questions correctly!',
+              'U answers $numCorrectQuestions out of $numOfTotalQuestions questions correctly!',
               style: GoogleFonts.lato(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
