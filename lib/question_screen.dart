@@ -13,7 +13,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
-  answerQuestions() {
+  void answerQuestions(String selectAnswer) {
+    widget.onSelectAnswer(selectAnswer);
     setState(() {
       currentQuestionIndex++;
     });
@@ -62,8 +63,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           ),
           //map is just creationg a new object in this case list with new item based on old ones
           ...currentquestion.getshuffledAnswers().map(
-            (item) {
-              return AnswerButton(answerText: item, onTap: answerQuestions);
+            (answer) {
+              return AnswerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answerQuestions(answer);
+                  });
             },
           ),
 
